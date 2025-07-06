@@ -1,0 +1,53 @@
+name: Network
+model: RAMSF
+nEpochs: 5  # 600 ps: According to the iterations
+save_best: True
+is_cuda: True
+gpus: [0]
+num_worker: 0
+batch_size: 32
+task: MSIP  # [MSIP, HSIP, MHIF]
+
+hyperparameter:
+  lambda1: 0.2
+  lambda2: 0.3
+  lambda3: 0.5
+  lambda4: 0.01
+
+seed: 42
+weight: weight
+checkpoint: checkpoints
+training_set: datasets/MSIP/wv3/train
+satellite: wv3  # [gf2, qb, wv3]
+satellite4train: train_wv3.h5  # [gf2, qb, wv3]
+satellite4valid: valid_wv3.h5
+
+pretrain:
+  pretrained: False
+  pre_folder: checkpoints
+  pre_source: 600.pth
+
+test:
+  model: MMAPP  # [PNN, PanNet, GPPNN, SRPPNN, ACKNet, SpanNet, FusionNet, MUCNN, LAGConv, MMAPP]
+  test_set: ./datasets/MSIP/wv3/test
+  test4refer: test_wv3_multiExm1.h5
+  test4nonrefer: test_wv3_OrigScale_multiExm1.h5
+  type: rr  # [rr, fr]
+  use_metric: True
+  result2img: False
+  img_type: mat  # [mat, tif]
+  weight: 600.pth
+  bitdepth: 2047
+
+schedule:
+  lr: 0.0003
+  decay: '100'
+  gamma: 0.9
+  optimizer: ADAM  # [ADAM, ADAMW, SGD, RMSprop]
+  momentum: 0.9  # SGD momemtum
+  beta1: 0.9  # ADAM beta
+  beta2: 0.999  # ADAM beta
+  epsilon: 1e-8  # ADAM epsilon
+  alpha: 0.9  # RMSprop alpha
+  weight_decay: 0
+  loss: L1  # [MSE, L1]
