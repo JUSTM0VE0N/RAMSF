@@ -94,7 +94,7 @@ $ python test.py --option_path option.yml
 
 ### Pre-trained Models and Results
 
-We provide the trained models at [download link](https://drive.google.com/drive/folders/1a1MHpIyma891RgKhqhaz6poo8d_XBHF3).
+We provide the trained models at [download link](https://drive.google.com/drive/folders/1P6bYKtknm_Pm07cpGeuJFOSUcoWXDkwz?usp=sharing).
 
 
 ### Citation
